@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Login as Admin"
+        android:id="@+id/loginAsAdmin"/>
+    <item android:title="Logout"
+        android:id="@+id/logout"/>
+    <item android:title="About Us"
+        android:id="@+id/aboutus"/>
+</menu>

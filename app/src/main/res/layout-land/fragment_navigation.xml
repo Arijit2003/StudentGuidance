@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="40dp"
+    android:paddingTop="56dp"
+    android:paddingBottom="56dp"
+    tools:context=".fragments.NavigationFragment"
+    android:background="@color/fragmentHomeBgColor">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical"
+        android:paddingBottom="16dp"
+        android:background="@drawable/navigationfragmentbackground">
+        <LinearLayout
+            android:id="@+id/startLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dim_50"
+            android:layout_marginEnd="@dimen/dim_50"
+            android:layout_marginTop="@dimen/dim_36">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/circle_icon"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/stroke_background" />
+            <EditText
+                android:id="@+id/startLocationET"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:ems="18"
+                android:background="@drawable/edittextbackground"
+                android:hint="@string/choosestart"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="#767272"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/destLoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dim_50"
+            android:layout_marginEnd="@dimen/dim_50"
+            android:layout_marginTop="@dimen/dim_16"
+            android:layout_below="@+id/startLoc">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/marker"
+                android:layout_gravity="center"
+                android:layout_marginEnd="16dp"
+                />
+            <EditText
+                android:id="@+id/destinationET"
+                android:layout_width="wrap_content"
+                android:layout_height="52dp"
+                android:ems="18"
+                android:background="@drawable/edittextbackground"
+                android:hint="@string/choosedestiny"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="#767272"/>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/getNavigationCV"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="15dp"
+            android:elevation="20dp"
+            android:backgroundTint="#E1FFFFFF"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/maps"
+                android:padding="10dp" />
+        </androidx.cardview.widget.CardView>
+
+
+
+
+    </RelativeLayout>
+</ScrollView>

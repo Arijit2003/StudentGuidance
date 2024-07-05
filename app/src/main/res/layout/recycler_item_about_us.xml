@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#A2E1F0"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/developerImageView"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/person_image"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/developerNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="24dp"
+            android:layout_toEndOf="@+id/developerImageView"
+            android:fontFamily="@font/lexend_deca"
+            android:text="Name"
+            android:textColor="#B3000000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/developerRoleTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Role"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="24dp"
+            android:textColor="#B3000000"
+            android:fontFamily="@font/lexend_deca"
+            android:layout_toEndOf="@+id/developerImageView"
+            android:layout_below="@id/developerNameTV"/>
+        <TextView
+            android:id="@+id/developerDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lorem"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#CDFFFFFF"
+            android:fontFamily="@font/lexend_deca"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/developerImageView"/>
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+
+

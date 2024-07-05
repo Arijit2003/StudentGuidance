@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:id="@+id/recyclerItemLL"
+    android:background="@drawable/recycler_item_background">
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/facultyImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/person_image"
+        android:layout_margin="10dp"
+        android:layout_gravity="center_vertical"/>
+    <View
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+        android:background="#03A9D3"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp">
+
+        <TextView
+            android:id="@+id/nameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend_deca"
+            android:text="@string/name"
+            android:textColor="#004E65"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/designationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lexend_deca"
+            android:text="@string/designation"
+            android:textColor="#8F000000"
+            android:textSize="14sp"
+            android:textStyle="normal" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/optionsMoreIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/more_icon"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"/>
+    </RelativeLayout>
+
+
+</LinearLayout>
