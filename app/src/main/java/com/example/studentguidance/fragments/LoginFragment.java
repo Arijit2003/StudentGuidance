@@ -47,11 +47,19 @@ public class LoginFragment extends Fragment {
     }
 
     private void init(View view){
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
+
         usernameET=view.findViewById(R.id.usernameET);
         passwordET=view.findViewById(R.id.passwordET);
         buttonLogin=view.findViewById(R.id.buttonLogin);
         mAuth = FirebaseAuth.getInstance();
     }
+
+
+
+
+
+
     private  void login(String email,String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(requireActivity(), task -> {

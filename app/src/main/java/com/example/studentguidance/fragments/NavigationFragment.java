@@ -21,20 +21,17 @@ import com.example.studentguidance.activities.MainActivity;
 public class NavigationFragment extends Fragment {
 
 
-    public NavigationFragment() {
-        // Required empty public constructor
-    }
     EditText startLocationET,destinationET;
     CardView getNavigationCV;
     String source,destination;
+
+
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_navigation, container, false);
         init(view);
-
-
 
         getNavigationCV.setOnClickListener(v->{
             if(!startLocationET.getText().toString().equals("") &&!destinationET.getText().toString().equals("")){
@@ -52,10 +49,17 @@ public class NavigationFragment extends Fragment {
 
         return view;
     }
+
+
+
+
+
+
     private void init(View view){
         startLocationET=view.findViewById(R.id.startLocationET);
         destinationET=view.findViewById(R.id.destinationET);
         getNavigationCV=view.findViewById(R.id.getNavigationCV);
+        MainActivity.voiceIconFAB.setVisibility(View.VISIBLE);
     }
 
 

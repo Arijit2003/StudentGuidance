@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.studentguidance.Adapters.AboutUsRecyclerAdapter;
 import com.example.studentguidance.ModelClasses.Developer;
 import com.example.studentguidance.R;
+import com.example.studentguidance.activities.MainActivity;
 
 import java.util.ArrayList;
 
@@ -30,11 +31,6 @@ public class AboutUsFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_about_us, container, false);
         init(view);
 
-//        ArrayList<Developer> arrayList = new ArrayList<>();
-//        arrayList.add(new Developer("Arijit Modak","Android Developer",
-//                "jkhuibfiuehiushf hfiherfhiufhuirehfuisdbuiehrjyc gsyfg uewygfuiewr f gweewuduewhwguibsdecji","null",""));
-//        arrayList.add(new Developer("Arijit Modak","Android Developer",
-//                "jkhuibfiuehiushf hfiherfhiufhuirehfuisdbuiehrjyc gsyfg uewygfuiewr f gweewuduewhwguibsdecji","null",""));
 
         aboutUsAdapter=new AboutUsRecyclerAdapter(HomeFragment.DEVELOPER_LIST,requireContext());
         recyclerViewAboutUs.setAdapter(aboutUsAdapter);
@@ -47,5 +43,6 @@ public class AboutUsFragment extends Fragment {
 
     public void init(View view){
         recyclerViewAboutUs=view.findViewById(R.id.recyclerViewAboutUs);
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
     }
 }

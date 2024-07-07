@@ -28,6 +28,7 @@ import android.widget.ScrollView;
 
 import com.example.studentguidance.R;
 
+import com.example.studentguidance.activities.MainActivity;
 import com.google.android.material.snackbar.Snackbar;
 
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -104,6 +105,7 @@ public class AddFacultyInfoFragment extends Fragment {
         hMapFacultyRecord=new HashMap<>();
         progressDialogUploading = new ProgressDialog(requireContext());
         scrollViewAddFaculty=view.findViewById(R.id.scrollViewAddFaculty);
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
     }
 
 

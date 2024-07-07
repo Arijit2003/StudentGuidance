@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.studentguidance.ModelClasses.Faculty;
 import com.example.studentguidance.R;
+import com.example.studentguidance.activities.MainActivity;
 
 import org.parceler.Parcels;
 
@@ -39,6 +40,8 @@ public class ShowFacultyInfoFragment extends Fragment {
 
 
     public void init(View view){
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
+
         circularImageView=view.findViewById(R.id.circularImageView);
         nameTV=view.findViewById(R.id.nameTV);
         departmentTV=view.findViewById(R.id.departmentTV);

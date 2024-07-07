@@ -128,6 +128,7 @@ public class FacultyListFragment extends Fragment {
     private void init(View view){
         recyclerView=view.findViewById(R.id.recyclerView);
         searchEditText=view.findViewById(R.id.searchEditText);
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
     }
 
 

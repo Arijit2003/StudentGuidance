@@ -1,6 +1,7 @@
 package com.example.studentguidance.activities;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 
@@ -29,9 +31,11 @@ import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.studentguidance.BuildConfig;
 import com.example.studentguidance.ModelClasses.StringExtract;
 import com.example.studentguidance.R;
 import com.example.studentguidance.fragments.AboutUsFragment;
@@ -41,14 +45,21 @@ import com.example.studentguidance.fragments.HomeFragment;
 import com.example.studentguidance.fragments.LoginFragment;
 
 import com.example.studentguidance.fragments.NavigationFragment;
+import com.example.studentguidance.fragments.QNAFragment;
+import com.google.ai.client.generativeai.GenerativeModel;
+import com.google.ai.client.generativeai.java.GenerativeModelFutures;
+import com.google.ai.client.generativeai.type.Content;
+import com.google.ai.client.generativeai.type.GenerateContentResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Locale;
-
 
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    FloatingActionButton voiceIconFAB;
+    public static FloatingActionButton voiceIconFAB;
     public static String ROOT_FRAGMENT_TAG="ROOT_FRAGMENT_TAG";
 
     public static boolean RECORD_AUDIO_PERMISSION=false;
@@ -66,7 +77,10 @@ public class MainActivity extends AppCompatActivity {
     public static boolean SUCCESSFUL_LOGIN=false;
     SpeechRecognizer speechRecognizer;
     FirebaseAuth mAuth;
-    String apiKey;
+
+
+    TextView idResponseTVofQNAFragment;
+
 
 
 
@@ -116,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
                 case R.id.aboutus: drawerLayout.close(); loadFragment(new AboutUsFragment(),1); break;
+                case R.id.qnaMenuItem: drawerLayout.close(); loadFragment(new QNAFragment(),1); break;
                 default:
                     Toast.makeText(this, "Other", Toast.LENGTH_SHORT).show();
             }
@@ -154,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawerLayout);
         navigationView=findViewById(R.id.navigationView);
         voiceIconFAB=findViewById(R.id.voiceIconFAB);
-        apiKey="AIzaSyDFqAltC7AvxqdfXKwTefcoLxPyXjoQy40";
         speechRecognizer=SpeechRecognizer.createSpeechRecognizer(this);
         toolbar=findViewById(R.id.toolbar);
         mAuth=FirebaseAuth.getInstance();
@@ -212,6 +226,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResults(Bundle bundle) {
                 if(bundle!=null){
                     ArrayList<String> stringRes=bundle.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
+
+                    if(getSupportFragmentManager().findFragmentById(R.id.container) instanceof QNAFragment){
+                        assert stringRes != null;
+                        idResponseTVofQNAFragment=findViewById(R.id.idResponseTV);
+                        generateGeminiResponse(stringRes.get(0));
+                        return ;
+                    }
                     ArrayList<String> res=StringExtract.getSourceAndDestination(stringRes.get(0));
                     Toast.makeText(MainActivity.this, stringRes.get(0).concat(String.valueOf(res)), Toast.LENGTH_SHORT).show();
 
@@ -236,6 +257,10 @@ public class MainActivity extends AppCompatActivity {
         });
         speechRecognizer.startListening(intent);
     }
+
+
+
+
 
 
 
@@ -293,6 +318,37 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    public void generateGeminiResponse(String message){
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Fetching");
+        progressDialog.setMessage("wait...wait...wait");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        GenerativeModel gm = new GenerativeModel("gemini-1.5-flash", BuildConfig.GEMINI_API_KEY);
+        GenerativeModelFutures model = GenerativeModelFutures.from(gm);
+        Content content = new Content.Builder().addText(message).build();
+        ListenableFuture<GenerateContentResponse> response = model.generateContent(content);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            Futures.addCallback(response, new FutureCallback<GenerateContentResponse>() {
+                @Override
+                public void onSuccess(GenerateContentResponse result) {
+                    String res=result.getText();
+                    assert res != null;
+                    idResponseTVofQNAFragment.setText("Response: ".concat(res));
+                    progressDialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    idResponseTVofQNAFragment.setText("Response: ".concat("Error"));
+                    progressDialog.dismiss();
+                }
+            }, this.getMainExecutor());
+        }
+
+
+    }
 
 
 
@@ -304,4 +360,12 @@ public class MainActivity extends AppCompatActivity {
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) drawerLayout.close();
         else super.onBackPressed();
     }
+
+
+
+
+
+
+
+
 }

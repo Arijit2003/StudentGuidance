@@ -7,4 +7,6 @@
         android:id="@+id/logout"/>
     <item android:title="About Us"
         android:id="@+id/aboutus"/>
+    <item android:title="QNA"
+        android:id="@+id/qnaMenuItem"/>
 </menu>

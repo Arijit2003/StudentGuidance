@@ -96,6 +96,8 @@ public class HomeFragment extends Fragment {
 
 
     private void init(View view){
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
+
         imageSlider=view.findViewById(R.id.imageSlider);
         navigationCardView=view.findViewById(R.id.navigationCardView);
         facultyInfoCardView=view.findViewById(R.id.facultyInfoCardView);
@@ -103,6 +105,7 @@ public class HomeFragment extends Fragment {
         FACULTY_LIST_VIT_BPL=new ArrayList<>();
         DEVELOPER_LIST=new ArrayList<>();
         //adding images to the list
+        imageList.clear();
         imageList.add(new SlideModel(R.drawable.img1, ScaleTypes.FIT));
         imageList.add(new SlideModel(R.drawable.img2, ScaleTypes.FIT));
         imageList.add(new SlideModel(R.drawable.img3, ScaleTypes.FIT));

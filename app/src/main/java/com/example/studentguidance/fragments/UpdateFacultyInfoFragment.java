@@ -98,6 +98,8 @@ public class UpdateFacultyInfoFragment extends Fragment {
 
 
     public void init(View view){
+        MainActivity.voiceIconFAB.setVisibility(View.INVISIBLE);
+
         updateBtnClose=view.findViewById(R.id.updateBtnClose);
         facultyImage=view.findViewById(R.id.facultyImage);
         nameET=view.findViewById(R.id.nameET);
